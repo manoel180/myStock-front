@@ -1,0 +1,19 @@
+<p-sidebar [(visible)]="homeService.state.visibleSideBar">
+  <ng-template pTemplate="header">
+    <span class="font-semibold text-xl">MyStock</span>
+  </ng-template>
+
+  <p-panelMenu [model]="items" styleClass="w-full md:w-20rem">
+    <ng-template pTemplate="item" let-item>
+      <ng-container >
+        <a
+          [routerLink]="item.route"
+          class="flex align-items-center cursor-pointer text-color px-3 py-2"
+        >
+          <span [class]="item.icon"></span>
+          <span class="ml-2 text-color">{{ item.label }}</span>
+        </a>
+      </ng-container>
+    </ng-template>
+  </p-panelMenu>
+</p-sidebar>
