@@ -3,3 +3,9 @@
 @import "primeng/resources/primeng.css";
 @import "primeng/resources/themes/md-dark-indigo/theme.css";
 @import "primeicons/primeicons.css";
+@import "@angular/material/prebuilt-themes/azure-blue.css";
+@import "primeflex/primeflex.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
