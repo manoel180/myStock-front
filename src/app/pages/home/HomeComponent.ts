@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { HomeService } from '../../services/home.service';
+import { RouterOutlet } from "@angular/router";
 
 
 @Component({
@@ -10,7 +11,7 @@ import { HomeService } from '../../services/home.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
     standalone: true,
-    imports: [NavbarComponent, SidebarComponent]
+    imports: [NavbarComponent, SidebarComponent, RouterOutlet]
 })
 export class HomeComponent implements OnInit {
 
