@@ -2,14 +2,15 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/HomeComponent';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent ,  canActivate: [authGuard]},
   { path: 'dashboard', component: DashboardComponent },
-  // { path: 'auth', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
-  // { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
+  { path: 'login', component: LoginComponent },
   { path: 'notfound', component: NotfoundComponent },
   { path: '**', redirectTo: '/notfound' },
-  // { path: '**' },
+
 ];
 
