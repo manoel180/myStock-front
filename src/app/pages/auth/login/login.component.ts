@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { UserAuthService } from '../../../services/userAuthService';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login',
@@ -25,21 +26,25 @@ import { Router } from '@angular/router';
     InputTextModule,
     ToastModule,
     PasswordModule,
+    ButtonModule
   ],
-  // providers: [MessageService],
+
   standalone: true,
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-
+  loading: boolean;
   constructor(
     private fb: FormBuilder,
     private userService: UserAuthService,
     private toastService: MessageService,
     private router: Router
-  ) {}
+  ) {
+    this.loading = false;
+  }
   ngOnInit(): void {
     this.createForm();
+
   }
   createForm() {
     this.loginForm = this.fb.group({
@@ -48,6 +53,7 @@ export class LoginComponent implements OnInit {
     });
   }
   onLogin() {
+    this.loading = true;
     if (this.loginForm.valid) {
       let $user = this.userService.login(
         this.loginForm.controls['username'].value,
@@ -69,5 +75,6 @@ export class LoginComponent implements OnInit {
         detail: 'Login ou senha inválida!!!',
       });
     }
+    this.loading=false;
   }
 }
