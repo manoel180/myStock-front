@@ -1,0 +1,34 @@
+<form  [formGroup]="form" >
+
+  <p-floatLabel>
+    <input id="name" type="text" pInputText formControlName="name" />
+    <label for="name">Nome</label>
+  </p-floatLabel>
+
+  <p-floatLabel>
+    <input id="descritpion" type="text" pInputText formControlName="description" />
+    <label for="description">Descrição</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input id="qty" type="text" pInputText formControlName="quantity" />
+    <label for="qty">Quantidade</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input id="qty_min" type="text" pInputText formControlName="quantity_alert" />
+    <label for="qty_min">Quantidade</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input id="price" type="text" pInputText formControlName="price" />
+    <label for="price">Preço</label>
+  </p-floatLabel>
+  <p-dropdown 
+  formControlName="category" 
+  [options]="categories"
+  optionLabel="name"
+  placeholder="Selecione uma categoria" />
+
+ 
+</form>
+
+  <p-button label="Save" (onClick)="saveProduct()" icon="pi pi-check" />
+
