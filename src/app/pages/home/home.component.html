@@ -2,12 +2,18 @@
   <mat-toolbar class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1>myStock</h1>
+    <p-avatar
+
+    label="M"
+    styleClass="flex align-items-center justify-content-center mr-2"
+    />
+
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container"
+  <mat-sidenav-container class="sidenav-container" autosize
                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened="true"
-                [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" min="true">
+                [fixedInViewport]="mobileQuery.matches" >
 
         <p-menu [model]="items">
 
@@ -15,22 +21,20 @@
             <span class="text-primary font-bold">{{ item.label }}</span>
         </ng-template>
         <ng-template pTemplate="item" let-item>
-            <a pRipple class="flex align-items-center p-menuitem-link">
+            <a [routerLink]="item.route" pRipple class="flex align-items-center p-menuitem-link">
                 <span [class]="item.icon"></span>
                 <span class="ml-2">{{ item.label }}</span>
-
-                @if (item.shortcut) {
-                  <span class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut }}</span>
-                }
             </a>
-        </ng-template>      </p-menu>
+        </ng-template>
+      </p-menu>
 
     </mat-sidenav>
 
     <mat-sidenav-content>
 
-      <p>conteudo</p>
+      <router-outlet></router-outlet>
 
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<p-toast />

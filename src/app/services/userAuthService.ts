@@ -54,7 +54,7 @@ export class UserAuthService implements IUserAuthService {
    .pipe(
     tap((result) => {
       this.sessionService.setItem("currentUser", this.encrypt(result.access_token));
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/');
    }));
 
 
