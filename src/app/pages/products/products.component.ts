@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { Router, RouterLink } from '@angular/router';
 import { TagModule } from 'primeng/tag';
+import { ExchangeService } from '../../services/exchange.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -26,11 +27,26 @@ import { TagModule } from 'primeng/tag';
 })
 export class ProductsComponent implements OnInit {
   products!: Product[];
+  quoteDolar: number =0;
+
   constructor(private productService: ProductService,
+    private exchangeService: ExchangeService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private router: Router
   ) { }
+  getQuote(){
+    this.exchangeService.getQuote()
+    .subscribe(
+      {
+        next: (res) => {
+          this.quoteDolar = res.value[0].cotacaoCompra;
+        }});
+  }
+  calculateQuote(value: number){
+    return value / this.quoteDolar ;
+
+  }
   getStatus(quantity: number, quantity_alert: number){
     switch (this.getSeverity(quantity, quantity_alert)) {
       case 'success':
@@ -51,7 +67,7 @@ export class ProductsComponent implements OnInit {
     return 'success';
   }
   ngOnInit() {
-
+    this.getQuote();
 this.load();
   }
   load(){
