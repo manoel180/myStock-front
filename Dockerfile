@@ -15,9 +15,6 @@ RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
 COPY . .
 
-RUN npx ng add @ngx-env/builder --skip-confirmation
-RUN npm add @ngx-env/core
-RUN npx ng config projects.ng-app.architect.build.options.ngxEnv.prefix 'NG_APP_'
 RUN npm ci
 RUN echo 'console.log("NG_APP_BACKEND_URL", import.meta.env["NG_APP_BACKEND_URL"])' >>src/main.ts
 
@@ -32,9 +29,6 @@ COPY --from=build-stage /app/dist/my-stock-app/browser /usr/share/nginx/html
 
 COPY /nginx.conf  /etc/nginx/nginx.conf
 
-RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \
-          envsubst '\$NG_APP_BACKEND_URL ' < \${mainFileName} > main.tmp && \
-          mv main.tmp  \${mainFileName} && nginx -g 'daemon off;'" > run.sh
 # Exposing a port, here it means that inside the container
 # the app will be using Port 80 while running
 EXPOSE 80
