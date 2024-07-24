@@ -1,4 +1,11 @@
 FROM node:lts-alpine3.20 AS build-stage
+
+# Get the arguments from the command line
+ARG NG_APP_BACKEND_URL
+
+# Set the environment variables
+ENV NG_APP_BACKEND_URL=$NG_APP_BACKEND_URL
+
 # Create a Virtual directory inside the docker image
 WORKDIR /app
 # Copy files to virtual directory
@@ -8,10 +15,11 @@ RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
 COPY . .
 
+RUN npx ng add @ngx-env/builder --skip-confirmation
+RUN npm add @ngx-env/core
+RUN npx ng config projects.ng-app.architect.build.options.ngxEnv.prefix 'NG_APP_'
 RUN npm ci
-
-ARG BACKEND_URL
-ENV NG_APP_BACKEND_URL=$BACKEND_URL
+RUN echo 'console.log("NG_APP_BACKEND_URL", import.meta.env["NG_APP_BACKEND_URL"])' >>src/main.ts
 
 RUN npm run build
 
