@@ -27,4 +27,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
+          secrets: |
+            BACKEND_URL=${{ secrets.BACKEND_URL }}
           tags: manoel180/mystock-front:latest
