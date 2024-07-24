@@ -19,7 +19,7 @@ RUN ng build --configuration=production
 FROM nginx:stable-alpine AS production-stage
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder
-COPY --from=build-stage /app/dist/my-stock-app /usr/share/nginx/html
+COPY --from=build-stage /app/dist/my-stock-app/browser /usr/share/nginx/html
 
 COPY /nginx.conf  /etc/nginx/nginx.conf
 # Exposing a port, here it means that inside the container
