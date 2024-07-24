@@ -1,6 +1,6 @@
 services:
   web:
-    image: manoel180/mystock:latest
+    image: manoel180/mystock-front:latest
     container_name: myStock-front 
     restart: always
     ports:
