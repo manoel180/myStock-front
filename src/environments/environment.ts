@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost'
+  production: true,
+  apiUrl: import.meta.env.NG_APP_BACKEND_URL
 };

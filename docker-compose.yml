@@ -1,7 +1,9 @@
 services:
   web:
     image: manoel180/mystock-front:latest
-    container_name: myStock-front 
+    container_name: myStock-front
     restart: always
     ports:
       - 80:80
+    environment:
+      - NG_APP_BACKEND_URL=${BACKEND_URL}

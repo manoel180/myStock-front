@@ -350,3 +350,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/angular,visualstudiocode,node,webstorm
 src/environments/environment.development.ts
 
+.vscode/
