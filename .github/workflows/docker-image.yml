@@ -26,6 +26,9 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
+          build-args: |
+              BACKEND_URL=${{ secrets.BACKEND_URL }}
+              NG_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}
           secrets: |
               BACKEND_URL=${{ secrets.BACKEND_URL }}
               NG_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}
