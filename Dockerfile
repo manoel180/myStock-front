@@ -8,10 +8,11 @@ RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
 COPY . .
 
-ARG BACKEND_URL
-ENV NG_APP_BACKEND_URL $BACKEND_URL
-
 RUN npm ci
+
+ARG BACKEND_URL
+ENV NG_APP_BACKEND_URL=$BACKEND_URL
+
 RUN npm run build
 
 ### STAGE 2:RUN ###
