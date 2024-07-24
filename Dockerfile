@@ -13,10 +13,10 @@ RUN npm run build
 
 ### STAGE 2:RUN ###
 # Defining nginx image to be used
-FROM nginx:stable AS production-stage
+FROM nginx:stable-alpine3.17-slim AS production-stage
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist/my-stock-app /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/nginx.conf
 # Exposing a port, here it means that inside the container
 # the app will be using Port 80 while running
