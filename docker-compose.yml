@@ -1,0 +1,7 @@
+services:
+  web:
+    image: manoel180/mystock:latest
+    container_name: myStock-front 
+    restart: always
+    ports:
+      - 80:80
