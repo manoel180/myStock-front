@@ -1,5 +1,8 @@
 FROM node:lts-alpine3.20 AS build-stage
 
+RUN --mount=type=secret,id=BACKEND_URL \
+  cat /run/secrets/BACKEND_URL
+
 # Get the arguments from the command line
 ARG NG_APP_BACKEND_URL
 
