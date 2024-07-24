@@ -23,6 +23,10 @@ FROM nginx:stable-alpine3.19-slim AS production-stage
 COPY --from=build-stage /app/dist/my-stock-app/browser /usr/share/nginx/html
 
 COPY /nginx.conf  /etc/nginx/nginx.conf
+
+RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \
+          envsubst '\$NG_APP_BACKEND_URL ' < \${mainFileName} > main.tmp && \
+          mv main.tmp  \${mainFileName} && nginx -g 'daemon off;'" > run.sh
 # Exposing a port, here it means that inside the container
 # the app will be using Port 80 while running
 EXPOSE 80
