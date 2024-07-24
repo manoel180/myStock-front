@@ -1,10 +1,40 @@
-<div >
-  <app-navbar ></app-navbar>
-  <app-sidebar #sidebarRef [visible]="homeService.state.visibleSideBar"></app-sidebar>
-  <div class="layout-main-container">
-      <div class="layout-main">
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1>myStock</h1>
+    <p-avatar
 
-      </div>
-  </div>
+    label="M"
+    styleClass="flex align-items-center justify-content-center mr-2"
+    />
 
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" autosize
+                        [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" opened="true"
+                [fixedInViewport]="mobileQuery.matches" >
+
+        <p-menu [model]="items">
+
+        <ng-template pTemplate="submenuheader" let-item>
+            <span class="text-primary font-bold">{{ item.label }}</span>
+        </ng-template>
+        <ng-template pTemplate="item" let-item>
+            <a [routerLink]="item.route" pRipple class="flex align-items-center p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
+        </ng-template>
+      </p-menu>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
+<p-toast />

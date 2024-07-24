@@ -1,0 +1,10 @@
+.inputStyle{
+  width: '100%';
+  height: '58px';
+  border-top-left-radius: '0px';
+  border-bottom-left-radius: '0px';
+}
+.passwordStyle{
+  width: '100%' !important;
+   height: '58px' !important;
+}
