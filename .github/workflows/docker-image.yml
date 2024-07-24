@@ -26,8 +26,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          push: true
+          context: .
+          file: Dockerfile
           secrets: |
-            BACKEND_URL=${{ secrets.BACKEND_URL }}
-            NG_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}
+              BACKEND_URL=${{ secrets.BACKEND_URL }}
+              NG_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}
+          push: true
           tags: manoel180/mystock-front:latest
