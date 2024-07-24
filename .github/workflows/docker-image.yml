@@ -29,4 +29,5 @@ jobs:
           push: true
           secrets: |
             BACKEND_URL=${{ secrets.BACKEND_URL }}
+            NG_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}
           tags: manoel180/mystock-front:latest
