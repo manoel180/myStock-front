@@ -4,11 +4,11 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { tokenInterceptor } from './interceptors/tokenInterceptor';
-
+import { AppModule } from './app.module';
 
 export const appConfig: ApplicationConfig = {
 
@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     importProvidersFrom(MessageService),
     importProvidersFrom(ToastModule), provideAnimationsAsync(), provideAnimationsAsync(),
-
+    importProvidersFrom(AppModule)
 
   ],
 

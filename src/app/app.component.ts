@@ -14,6 +14,6 @@ import { ToastModule } from 'primeng/toast';
 })
 export class AppComponent {
   constructor(
-   
+
   ){}
 }
